@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
 
+before_action :authenticate_user!, except: [:index, :show]
+
 	def index
 		@posts = Post.all
 	end
 
 	def new
-		@post = Post.new
+		@post = current_user.posts.build
 	end
 
 	def show
@@ -13,7 +15,7 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.new(post_params)
+		@post = @post = current_user.posts.build(post_params)
 		
 		if (@post.save)
 			redirect_to @post
