@@ -1,0 +1,46 @@
+
+
+<div class="jumbotron">
+<h1 class="display-3"><%= @post.title %></h1>
+<p class="lead"><%= @post.body %></p>
+<hr>
+<div class="btn-group">
+<%= link_to "Back To Posts", home_path, :class => 'btn btn-primary' %>
+<%= link_to "Edit Post", edit_post_path(@post), :class => 'btn btn-primary' %>
+<%= link_to "Delete Post", post_path(@post), method: :delete, data: { confirm: "Are You Sure?" }, :class => "btn btn-primary" %>
+</div>
+</div>
+<hr>
+
+<h4>Add A Comment!</h4>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+
+	<% if @post.errors.any? %>
+		<% @post.errors.full_messages.each do |msg| %>
+			<div class="alert alert-danger"><%= msg%></div>
+		<% end %>
+	<% end %>
+
+	<p>
+		<%= f.label :username %><br>
+		<%= f.text_field(:username, {:class => 'form-control'}) %>
+	</p>
+
+	<p>
+		<%= f.label :body %><br>
+		<%= f.text_area(:body, {:class => 'form-control'}) %>
+	</p>
+
+	<p>
+		<%= f.submit({:class => 'btn btn-primary'}) %>
+	</p>
+	<% end %>
+
+<h4>Comments:</h4>
+
+<% @post.comments.each do |comment| %>
+	<div class="jumbotron">
+		<h5 class="display-5"><%= comment.username %>: <%= comment.body %></h5>
+		<%= link_to "Delete Comment", [comment.post, comment], :class => "btn btn-primary", method: :delete, data: { confirm: "Are You Sure?" } %>
+	</div>
+<% end %>

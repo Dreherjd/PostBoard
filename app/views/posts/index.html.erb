@@ -1,0 +1,16 @@
+<h3>Message Board</h3>
+
+<% @posts.each do |post| %>
+
+<div class="card bg-light mb-3" style="max-width: 20rem;">
+  <div class="card-header"><%= post.title %></div>
+  <div class="card-body">
+    <p class="card-text"><%= truncate(post.body, length: 150) %></p>
+    <hr>
+    <%= link_to "Read More", post_path(post), :class => 'btn btn-primary', :style => 'display:block;' %>
+  </div>
+</div>
+
+<% end %>
+
+

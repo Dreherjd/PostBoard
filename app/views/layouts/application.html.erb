@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PostBoard</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= stylesheet_link_tag 'https://bootswatch.com/4/minty/bootstrap.css' %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<div class="container">
+  <%= link_to "Post Board", home_path, class: "navbar-brand" %>
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto navbar-right">
+      <li class="nav-item">
+        <%= link_to "Create Post", new_post_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Log in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Log Out</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+
+
+	<div class="container">
+    <%= yield %>
+	</div>
+  </body>
+</html>
