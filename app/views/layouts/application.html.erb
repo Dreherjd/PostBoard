@@ -16,23 +16,28 @@
   <%= link_to "Post Board", home_path, class: "navbar-brand" %>
   <div class="collapse navbar-collapse" id="navbarColor03">
     <ul class="navbar-nav mr-auto navbar-right">
+      <% if user_signed_in? %>
       <li class="nav-item">
-        <%= link_to "Create Post", new_post_path, class: "nav-link" %>
+        <%= link_to "Create Post", new_post_path, class: "nav-link navbar-right" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Log in</a>
+        <%= link_to "Sign Out", destroy_user_session_path, class: "nav-link" %>
+      </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Log Out</a>
+        <%= link_to "Join Us", new_user_registration_path, :class => "nav-link" %>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
+      <% end %>
     </ul>
   </div>
 </div>
 </nav>
-
+<!-- Devise alerts -->
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
 
 	<div class="container">
     <%= yield %>
